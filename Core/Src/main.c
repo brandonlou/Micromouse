@@ -215,11 +215,11 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+
   if(GPIO_Pin == PushButton_Pin) {
 
-	  if(HAL_GPIO_ReadPin(PushButton_GPIO_Port, PushButton_PIN) == GPIO_PIN_RESET) {
+	  if(HAL_GPIO_ReadPin(PushButton_GPIO_Port, PushButton_Pin) == GPIO_PIN_RESET) {
 
 		   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 
@@ -228,7 +228,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
 	  }
-
   }
 }
 
