@@ -1,0 +1,4 @@
+motors.c:12:6:Motors_Reset	8	static
+motors.c:22:6:MotorR_PWM_Set	24	static
+motors.c:37:6:MotorL_PWM_Set	24	static
+motors.c:55:6:PWM_Set	56	static

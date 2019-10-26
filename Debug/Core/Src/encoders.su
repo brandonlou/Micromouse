@@ -1,0 +1,4 @@
+encoders.c:23:6:Encoders_Reset	16	static
+encoders.c:41:6:HAL_GPIO_EXTI_Callback	24	static
+encoders.c:68:9:GetEncoderRCounts	4	static
+encoders.c:74:9:GetEncoderLCounts	4	static

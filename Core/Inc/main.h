@@ -50,10 +50,17 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+
+TIM_HandleTypeDef* Get_HTim2_Ptr(void);
+TIM_HandleTypeDef* Get_HTim3_Ptr(void);
+TIM_HandleTypeDef* Get_HTim4_Ptr(void);
+
 
 /* USER CODE END EFP */
 
@@ -61,16 +68,34 @@ void Error_Handler(void);
 #define PushButton_Pin GPIO_PIN_13
 #define PushButton_GPIO_Port GPIOC
 #define PushButton_EXTI_IRQn EXTI15_10_IRQn
+#define EncoderLF_Pin GPIO_PIN_1
+#define EncoderLF_GPIO_Port GPIOA
+#define EncoderLF_EXTI_IRQn EXTI1_IRQn
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_5
 #define LED_GPIO_Port GPIOA
+#define MotorLB_Pin GPIO_PIN_6
+#define MotorLB_GPIO_Port GPIOA
+#define EncoderLB_Pin GPIO_PIN_4
+#define EncoderLB_GPIO_Port GPIOC
+#define EncoderLB_EXTI_IRQn EXTI4_IRQn
+#define MotorRB_Pin GPIO_PIN_10
+#define MotorRB_GPIO_Port GPIOB
+#define MotorRF_Pin GPIO_PIN_7
+#define MotorRF_GPIO_Port GPIOC
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
-#define SWO_Pin GPIO_PIN_3
-#define SWO_GPIO_Port GPIOB
+#define EncoderRB_Pin GPIO_PIN_15
+#define EncoderRB_GPIO_Port GPIOA
+#define EncoderRB_EXTI_IRQn EXTI15_10_IRQn
+#define EncoderRF_Pin GPIO_PIN_3
+#define EncoderRF_GPIO_Port GPIOB
+#define EncoderRF_EXTI_IRQn EXTI3_IRQn
+#define MotorLF_Pin GPIO_PIN_6
+#define MotorLF_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
