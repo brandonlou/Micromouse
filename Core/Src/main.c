@@ -45,6 +45,9 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 
+int32_t encoderRCounts;
+int32_t encoderLCounts;
+
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -109,6 +112,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+	  encoderRCounts = GetEncoderRCounts();
+	  encoderLCounts = GetEncoderLCounts();
 
     /* USER CODE BEGIN 3 */
   }
