@@ -63,6 +63,11 @@ static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
 
+void MotorR_PWM_Set(float pwm);
+void MotorL_PWM_Set(float pwm);
+int32_t GetEncoderRCounts(void);
+int32_t GetEncoderLCounts(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -103,7 +108,11 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
+
   /* USER CODE BEGIN 2 */
+
+  MotorR_PWM_Set(0.2);
+  MotorL_PWM_Set(0.2);
 
   /* USER CODE END 2 */
 
