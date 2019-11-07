@@ -28,8 +28,14 @@ void MotorR_PWM_Set(float pwm) {
 	 * also set the other direction to 0.
 	 */
 
-	PWM_Set((pwm > 0)? MOTOR_RF : MOTOR_RB, abs(pwm));
-	PWM_Set((pwm > 0)? MOTOR_RB : MOTOR_RF, 0);
+	if (pwm > 0) {
+		PWM_Set(MOTOR_RF, pwm);
+		PWM_Set(MOTOR_RB, 0);
+
+	} else {
+		PWM_Set(MOTOR_RF, 0);
+		PWM_Set(MOTOR_RB, (-1*pwm)); // make pwm a positive value
+	}
 
 }
 
@@ -43,8 +49,14 @@ void MotorL_PWM_Set(float pwm) {
 	 * also set the other direction to 0.
 	 */
 
-	PWM_Set((pwm > 0)? MOTOR_LF : MOTOR_LB, abs(pwm));
-	PWM_Set((pwm > 0)? MOTOR_LB : MOTOR_LF, 0);
+	if (pwm > 0) {
+		PWM_Set(MOTOR_LF, pwm);
+		PWM_Set(MOTOR_LB, 0);
+
+	} else {
+		PWM_Set(MOTOR_LF, 0);
+		PWM_Set(MOTOR_LB, (-1*pwm));// make pwm a positive value
+	}
 }
 
 /*
