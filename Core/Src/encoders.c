@@ -64,14 +64,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 }
 
-/*Allows you to get the right encoder counts from outside this c file.*/
-int32_t GetEncoderRCounts(void)
-{
+/* Allows you to get the right encoder counts from outside this c file. */
+int32_t GetEncoderRCounts(void) {
+
 	return EncoderRCounts;
+
 }
 
-/*Allows you to get the left encoder counts from outside this c file.*/
-int32_t GetEncoderLCounts(void)
-{
+/* Allows you to get the left encoder counts from outside this c file. */
+int32_t GetEncoderLCounts(void) {
+
 	return EncoderLCounts;
+
 }
