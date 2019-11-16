@@ -9,27 +9,37 @@
 #include "encoders.h"
 #include "motors.h"
 
-const float BASE_PWM_X = 0.4;
-const float kP_W = 0.0;
-const float kD_W = 0.0;
+float limitPwm(float pwm);
+
+const float maxSpeed = 1.0;
+const float minSpeed = 0.05; // Note: If PID never finishes, increase minSpeed
+
+const float kP_X = 0.00; // TODO: Tune
+const float kD_X = 0.00; // TODO: Tune
+
+const float kP_W = 0.05;
+const float kD_W = 0.01;
 
 int32_t goalD = 0;
 int32_t goalA = 0;
+
+float xErrorOld = 0;
 float wErrorOld = 0;
 
+const int threshold = 50;
+int counter = 0;
+
+/* Reset motors, encoders, and all necessary variables */
 void PID_Reset(void) {
 
-	/* Reset your motors, encoders, and all the variables in this .c file. */
 	Motors_Reset();
 	Encoders_Reset();
-	goalD = 0;
-	goalA = 0;
+	goalD = 0.0;
+	goalA = 0.0;
+	xErrorOld = 0.0;
 	wErrorOld = 0.0;
 
 }
-
-//float errorBuffer[15]; IMPLEMENT ERROR BUFFER ONLY IF NOT STRAIGHT AND CANNOT FIX MORE
-//int counter = 0;
 
 /*Should be called every millisecond to update your motor PWM duty cycles*/
 void PID_Update(void) {
@@ -51,16 +61,31 @@ void PID_Update(void) {
 	int32_t angleTravelled = left - right;
 
 	// x_controller
-	float pwmX = BASE_PWM_X;
+	float xError = goalD - distanceTravelled; // or the other way around
+	float pwmX = (kP_X * xError) + (kD_X * (xError - xErrorOld)) / 0.01;
+	xErrorOld = xError;
 
 	// w_controller
-	float wError = goalA - angleTravelled;
-	float pwmW = kP_W * wError + kD_W * (wError - wErrorOld) * 0.01; // Is 0.01 dt?
+	float wError = angleTravelled - goalA;
+	float pwmW = (kP_W * wError) + (kD_W * (wError - wErrorOld)) / 0.01; // why divide by 0.01?
 	wErrorOld = wError;
 
-	// Update motor PWM
-	MotorR_PWM_Set(pwmX + pwmW);
-	MotorL_PWM_Set(pwmX - pwmW);
+	// Limit motor PWM
+	pwmX = limitPwm(pwmX);
+	pwmW = limitPwm(pwmW);
+
+	// Calculate right and left PWM value
+	float rightSpeed = pwmX + pwmW;
+	float leftSpeed = pwmX - pwmW;
+
+	// Increase counter only if rat isn't moving considerably
+	if (rightSpeed < minSpeed && leftSpeed < minSpeed) {
+		counter++;
+	}
+
+	// Move motors
+	MotorR_PWM_Set(rightSpeed);
+	MotorL_PWM_Set(leftSpeed);
 
 }
 
@@ -79,6 +104,29 @@ void PID_Set_GoalA(int32_t a) {
 }
 
 /* Can be used by your controller to know when the PID is sufficiently close to the goal state. */
+/*Recommended: return 1 if the PID is sufficiently close to the goal for a long enough amount of time, else return 0.*/
 int8_t PID_Done(void) {
-	/*Recommended: return 1 if the PID is sufficiently close to the goal for a long enough amount of time, else return 0.*/
+
+	if(counter > threshold) {
+		return 1;
+
+	} else {
+		return 0;
+	}
+
+}
+
+/* Limits PWM between -1 to 1 */
+float limitPwm(float pwm) {
+
+	if(pwm > maxSpeed) {
+		return maxSpeed;
+
+	} else if(pwm < -maxSpeed) {
+		return -maxSpeed;
+
+	} else {
+		return pwm;
+	}
+
 }

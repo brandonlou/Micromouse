@@ -1,2 +1,2 @@
-controller.c:15:6:Move_Cells	16	static
-controller.c:22:6:Turn	16	static
+controller.c:17:6:Move_Cells	24	static
+controller.c:33:6:Turn	24	static

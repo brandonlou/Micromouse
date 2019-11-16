@@ -111,8 +111,9 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
-  MotorR_PWM_Set(0.2);
-  MotorL_PWM_Set(0.2);
+  // TODO: Test
+  // MoveCells(1);
+  // Turn(1);
 
   /* USER CODE END 2 */
 
@@ -121,10 +122,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
-	  encoderRCounts = GetEncoderRCounts();
-	  encoderLCounts = GetEncoderLCounts();
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -139,10 +136,10 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the main internal regulator output voltage 
-  */
-  __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  /* Configure the main internal regulator output voltage */
+  HAL_RCC_PWR_CLK_ENABLE();
+  HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
   /** Initializes the CPU, AHB and APB busses clocks 
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
@@ -362,10 +359,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
+  HAL_RCC_GPIOC_CLK_ENABLE();
+__HAL_RCC_GPIOH_CLK_ENABLE();
+__HAL_RCC_GPIOA_CLK_ENABLE();
+__HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
