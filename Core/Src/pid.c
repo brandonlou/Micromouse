@@ -11,13 +11,13 @@
 
 float limitPwm(float pwm);
 
-const float maxSpeed = 1.0;
-const float minSpeed = 0.05; // Note: If PID never finishes, increase minSpeed
+const float maxSpeed = 0.5;
+const float minSpeed = 0.2; // Note: If PID never finishes, increase minSpeed
 
-const float kP_X = 0.00; // TODO: Tune
-const float kD_X = 0.00; // TODO: Tune
+const float kP_X = 0.02; // TODO: Tune
+const float kD_X = 0.005; // TODO: Tune
 
-const float kP_W = 0.05;
+const float kP_W = 0.04;
 const float kD_W = 0.01;
 
 int32_t goalD = 0;
@@ -26,7 +26,7 @@ int32_t goalA = 0;
 float xErrorOld = 0;
 float wErrorOld = 0;
 
-const int threshold = 50;
+const int threshold = 500;
 int counter = 0;
 
 /* Reset motors, encoders, and all necessary variables */
@@ -38,6 +38,7 @@ void PID_Reset(void) {
 	goalA = 0.0;
 	xErrorOld = 0.0;
 	wErrorOld = 0.0;
+	counter = 0;
 
 }
 

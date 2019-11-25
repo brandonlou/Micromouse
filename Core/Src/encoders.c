@@ -23,6 +23,7 @@ volatile int8_t EncoderLPrev;
 void Encoders_Reset(void)
 {
 	EncoderRCounts = 0;
+
 	EncoderLCounts = 0;
 
 	int8_t RF = HAL_GPIO_ReadPin(EncoderRF_GPIO_Port, EncoderRF_Pin);

@@ -45,9 +45,6 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 
-int32_t encoderRCounts;
-int32_t encoderLCounts;
-
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -108,12 +105,19 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
-
   /* USER CODE BEGIN 2 */
 
   // TODO: Test
-  // MoveCells(1);
-  // Turn(1);
+  HAL_Delay(1000);
+  Move_Cells(2);
+  Turn(1);
+  Move_Cells(2);
+  Turn(-1);
+  Move_Cells(1);
+  Turn(-1);
+  Move_Cells(1);
+  Turn(1);
+  Move_Cells(1);
 
   /* USER CODE END 2 */
 
@@ -122,6 +126,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -136,10 +141,10 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /* Configure the main internal regulator output voltage */
-  HAL_RCC_PWR_CLK_ENABLE();
-  HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
+  /** Configure the main internal regulator output voltage 
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   /** Initializes the CPU, AHB and APB busses clocks 
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
@@ -359,10 +364,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  HAL_RCC_GPIOC_CLK_ENABLE();
-__HAL_RCC_GPIOH_CLK_ENABLE();
-__HAL_RCC_GPIOA_CLK_ENABLE();
-__HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
