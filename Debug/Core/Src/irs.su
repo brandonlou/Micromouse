@@ -1,0 +1,7 @@
+irs.c:14:6:Delay	16	static
+irs.c:21:10:Irs_Read_Right	8	static
+irs.c:27:10:Irs_Read_FrontR	8	static
+irs.c:33:10:Irs_Read_FrontL	8	static
+irs.c:39:10:Irs_Read_Left	8	static
+irs.c:47:10:Irs_Read	32	static
+irs.c:91:10:Analog_Read	48	static

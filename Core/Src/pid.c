@@ -14,8 +14,8 @@ float limitPwm(float pwm);
 const float maxSpeed = 0.5;
 const float minSpeed = 0.2; // Note: If PID never finishes, increase minSpeed
 
-const float kP_X = 0.02; // TODO: Tune
-const float kD_X = 0.005; // TODO: Tune
+const float kP_X = 0.02;
+const float kD_X = 0.005;
 
 const float kP_W = 0.04;
 const float kD_W = 0.01;

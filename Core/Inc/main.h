@@ -61,6 +61,8 @@ TIM_HandleTypeDef* Get_HTim2_Ptr(void);
 TIM_HandleTypeDef* Get_HTim3_Ptr(void);
 TIM_HandleTypeDef* Get_HTim4_Ptr(void);
 
+ADC_HandleTypeDef* Get_HAdc1_Ptr(void);
+
 
 /* USER CODE END EFP */
 
@@ -68,6 +70,12 @@ TIM_HandleTypeDef* Get_HTim4_Ptr(void);
 #define PushButton_Pin GPIO_PIN_13
 #define PushButton_GPIO_Port GPIOC
 #define PushButton_EXTI_IRQn EXTI15_10_IRQn
+#define IrLeftR_Pin GPIO_PIN_0
+#define IrLeftR_GPIO_Port GPIOC
+#define IrFrontLR_Pin GPIO_PIN_1
+#define IrFrontLR_GPIO_Port GPIOC
+#define IrRightR_Pin GPIO_PIN_0
+#define IrRightR_GPIO_Port GPIOA
 #define EncoderLF_Pin GPIO_PIN_1
 #define EncoderLF_GPIO_Port GPIOA
 #define EncoderLF_EXTI_IRQn EXTI1_IRQn
@@ -75,6 +83,8 @@ TIM_HandleTypeDef* Get_HTim4_Ptr(void);
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
+#define IrFrontRR_Pin GPIO_PIN_4
+#define IrFrontRR_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_5
 #define LED_GPIO_Port GPIOA
 #define MotorLB_Pin GPIO_PIN_6
@@ -82,6 +92,8 @@ TIM_HandleTypeDef* Get_HTim4_Ptr(void);
 #define EncoderLB_Pin GPIO_PIN_4
 #define EncoderLB_GPIO_Port GPIOC
 #define EncoderLB_EXTI_IRQn EXTI4_IRQn
+#define IrFrontLE_Pin GPIO_PIN_0
+#define IrFrontLE_GPIO_Port GPIOB
 #define MotorRB_Pin GPIO_PIN_10
 #define MotorRB_GPIO_Port GPIOB
 #define MotorRF_Pin GPIO_PIN_7
@@ -91,11 +103,17 @@ TIM_HandleTypeDef* Get_HTim4_Ptr(void);
 #define EncoderRB_Pin GPIO_PIN_15
 #define EncoderRB_GPIO_Port GPIOA
 #define EncoderRB_EXTI_IRQn EXTI15_10_IRQn
+#define IrRightE_Pin GPIO_PIN_10
+#define IrRightE_GPIO_Port GPIOC
+#define IrFrontRE_Pin GPIO_PIN_11
+#define IrFrontRE_GPIO_Port GPIOC
 #define EncoderRF_Pin GPIO_PIN_3
 #define EncoderRF_GPIO_Port GPIOB
 #define EncoderRF_EXTI_IRQn EXTI3_IRQn
 #define MotorLF_Pin GPIO_PIN_6
 #define MotorLF_GPIO_Port GPIOB
+#define IrLeftE_Pin GPIO_PIN_7
+#define IrLeftE_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

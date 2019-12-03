@@ -1,6 +1,6 @@
 pid.c:33:6:PID_Reset	8	static
-pid.c:45:6:PID_Update	56	static
-pid.c:93:6:PID_Set_GoalD	16	static
-pid.c:100:6:PID_Set_GoalA	16	static
-pid.c:108:8:PID_Done	4	static
-pid.c:120:7:limitPwm	16	static
+pid.c:46:6:PID_Update	56	static
+pid.c:94:6:PID_Set_GoalD	16	static
+pid.c:101:6:PID_Set_GoalA	16	static
+pid.c:109:8:PID_Done	4	static
+pid.c:121:7:limitPwm	16	static
