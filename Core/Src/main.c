@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "irs.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -61,7 +62,6 @@ static void MX_TIM3_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
-
 /* USER CODE BEGIN PFP */
 void MotorR_PWM_Set(float pwm);
 void MotorL_PWM_Set(float pwm);
@@ -123,16 +123,24 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  //HAL_GPIO_WritePin(IrFrontRE_GPIO_Port, IrFrontRE_Pin, GPIO_PIN_SET);
+
   while (1)
   {
-	  IR_R = Irs_Read_Right();
-	  IR_L = Irs_Read_Left();
-	  IR_FR = Irs_Read_FrontR();
-	  IR_FL = Irs_Read_FrontL();
-  }
-  /* USER CODE END WHILE */
+	  if(Irs_Read_FrontL() < 400 && Irs_Read_FrontR() < 400) {
+		  Move_Cells(1);
+	  } else if(Irs_Read_Left() < 400) {
+		  Turn(-1);
+	  } else if(Irs_Read_Right() < 400) {
+		  Turn(1);
+	  } else {
+		  Turn(2);
+	  }
 
-  /* USER CODE BEGIN 3 */
+  }
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 
   /* USER CODE END 3 */
 }
